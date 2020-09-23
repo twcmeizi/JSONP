@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+   function fn(data){
+        var html=''
+        for(let i=0;i<data.length;i++){
+            html+='<li>'+data[i]+'</li>'
+        }
+        var ul1=document.getElementById('ul1')
+        ul1.innerHTML=html
+    }
+    function fn2(data){
+        var html=''
+        for(let i=0;i<data.length;i++){
+            html+='<li>'+data[i]+'</li>'
+        }
+        var ul2=document.getElementById('ul2')
+        ul2.innerHTML=html
+    }
+    function fn3(data){
+        var html=''
+        for(let i=0;i<data.length;i++){
+            html+='<li>'+data[i]+'</li>'
+        }
+        var ul3=document.getElementById('ul3')
+        ul3.innerHTML=html
+    }
+</script>
+<!-- <script src="2.txt"></script> -->
+<body>
+    <!-- 按需加载进来， -->
+    <input type="button" value="数字" id="btn">
+    <ul id="ul1"></ul>
+    <input type="button" value="字母" id="btn2">
+    <ul id="ul2"></ul>
+    <input type="button" value="字母" id="btn3">
+    <ul id="ul3"></ul>
+    <script>
+        window.onload=function(){
+            var btn=document.getElementById('btn')
+            btn.onclick=function(){
+                var oScript=document.createElement('script')
+                oScript.src='getData.php?t=111'
+                document.body.append(oScript)
+            }
+            var btn2=document.getElementById('btn2')
+            btn2.onclick=function(){
+                var oScript=document.createElement('script')
+                oScript.src='getData.php?callback=fn2'
+                document.body.append(oScript)
+            }
+            var btn3=document.getElementById('btn3')
+            btn3.onclick=function(){
+                var oScript=document.createElement('script')
+                oScript.src='getData.php?callback=fn3&t=222'
+                document.body.append(oScript)
+            }
+        }
+    </script>
+    JSONP:JSON with Padding
+        1.script标签
+        2.用script标签加载资源是没有跨域问题的
+            问题：是否可以加载非.js文件
+
+        jsonp原理大概叙述：在资源加载进来之前定义好一个函数，在这个函数接受一个参数（数据），
+    函数里面利用这个参数做一些事情
+        然后需要的时候通过script标签加载对应远程文件资源，当远程的文件资源被加载进来
+    的时候，就回去执行我们前面定义好的函数，并且把数据当作这个函数的参数传入进来
+        问题：通过点击按钮来按需加载远程资源，让他执行
+        
+</body>
+</html>
