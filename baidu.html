@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #q{width: 300px;height: 30px;
+    padding: 5px;border: 1px solid red;}
+    ul{
+        width: 300px;
+        border: 1px solid royalblue;
+        display: none;
+    }
+    
+</style>
+<script>
+    function movie(data){
+        var ul =document.getElementById('ul1')
+        var html=''
+        if(data.s.length){
+            ul.style.display="block";
+            for(var i=0;i<data.s.length;i++){
+                html+='<li><a href="http://www.baidu.com/s?wd='+data.s[i]+'">'+data.s[i]+'</a></li>'
+            }
+            ul.innerHTML=html
+        }else{
+            ul.style.display="none";
+        }
+        
+    }
+    window.onload=function(){
+        var q=document.getElementById('q')
+        var ul =document.getElementById('ul1')
+        q.onkeyup=function(){
+            if(this.value!=''){
+                var oscript=document.createElement('script')
+                oscript.src='http://suggestion.baidu.com/su?wd='+this.value+'&cb=movie'
+            document.body.appendChild(oscript)
+            }else{
+            ul.style.display="none";
+        }
+        }
+    }
+</script>
+<body>
+    <input type="text" id='q' >
+    <ul id=ul1>
+        <li><a href="">33333</a></li>
+        <li><a href="">33333</a></li>
+        <li><a href="">33333</a></li>
+    </ul>
+</body>
+</html>
